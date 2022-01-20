@@ -1,0 +1,30 @@
+set ai
+set si
+set cindent
+set shiftwidth=4
+set tabstop=4
+set nocompatible
+set fileencodings=utf-8,euc-kr
+set fencs=ucs-bom,utf-8,enc-kr
+set bs=indent,eol,start
+set showmatch
+set ruler
+syntax on
+filetype indent on
+set mouse=a
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'scrooloose/nerdtree'
+map <Leader>nt <ESC>:NERDTree<CR>
+Plugin 'ctrlpvim/ctrlp.vim'
+map <C-B> :!g++ -o %< % <CR>
+map <C-]> :!./%< <CR>
+map <C-S> :w! <CR>
+
+call vundle#end()
+filetype plugin indent on
