@@ -7,10 +7,10 @@ int main(){
 	string str;
 	cin >> str;
 	string big, sml;
-	stack<char> st;
+	stack<int> st;
 	for(int i=0; i<str.length(); i++){
 		if(str[i] == 'M'){
-			st.push(str[i]);
+			st.push(i);
 		}else{
 			big.append("5");
 			sml.append("1");
@@ -28,7 +28,7 @@ int main(){
 		big.append("1");
 		sml.append("1");
 		for(int i=1; i<st.size(); i++){
-			big.append("0");
+			big.append("1");
 			sml.append("0");
 		}
 	}
