@@ -1,13 +1,10 @@
 #include <iostream>
-#include <set>
 #include <vector>
-#include <cmath>
 #include <algorithm>
-
 using namespace std;
 
 int N, K;
-set<int> s;
+vector<int> v;
 
 void getInput(){
 	cin >> N;
@@ -15,32 +12,22 @@ void getInput(){
 	for(int i=0; i<N; i++){
 		int temp;
 		cin >> temp;
-		s.insert(temp);
+		v.push_back(temp);
 	}
+	sort(v.begin(), v.end());
 }
 
 void solution(){
 	getInput();
-	vector<int> v(K);
-	int small = *s.begin(), big =  *s.rbegin();
-	for(int i=0; i<K; i++){
-		v[i] =round(((i+1)*big + (K-i)*small)/(K+1));
+	vector<int> d;
+	for(int i=0; i<N-1; i++){
+		d.push_back(v[i+1]-v[i]);
 	}
-	int ans = 0, idx = 0, d = 0;
-	for(auto it:s){
-		if(idx == K-1){
-			d = max(d, abs(v[idx] - it));
-		}else{
-			if(abs(v[idx] - it) < abs(v[idx+1] - it)){
-				d = max(d, abs(v[idx] - it));
-			}else{
-				ans += d;
-				idx++;
-				d = 0;
-			}
-		}
+	sort(d.begin(), d.end());
+	int ans = 0;
+	for(int i=0; i<N-K; i++){
+		ans += d[i];
 	}
-	ans += d;
 	cout << ans << '\n';
 }
 
