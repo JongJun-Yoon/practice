@@ -5,6 +5,7 @@
 using namespace std;
 int C, N;
 int cost[MAX], output[MAX];
+int dp[MAX][1001];
 
 void getInput(){
 	cin >> C >> N;
@@ -14,7 +15,12 @@ void getInput(){
 }
 
 void sol(){
-	
+	for(int i=0; i<=N; i++){
+		for(int j=0; j<=1000; j++){
+			if(j
+			dp[i][j] = max(dp[i-1][j], dp[);
+		}
+	}
 }
 
 int main(){
