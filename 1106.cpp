@@ -17,8 +17,7 @@ void getInput(){
 void sol(){
 	for(int i=0; i<=N; i++){
 		for(int j=0; j<=1000; j++){
-			if(j
-			dp[i][j] = max(dp[i-1][j], dp[);
+			dp[i][j] = max(dp[i-1][j], dp[]);
 		}
 	}
 }
