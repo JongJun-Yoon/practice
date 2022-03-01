@@ -1,48 +1,34 @@
 #include <iostream>
-#define MAX 500+1
+#include <vector>
+#include <algorithm>
+#define intp pair<int,int>
 using namespace std;
 
-int N, CNT=0;
-int map[MAX], dp[MAX];
+int N;
+vector<intp> v;
 
 void getInput(){
 	cin >> N;
-	for(int i=1; i<=N; i++){
+	for(int i=0; i<N; i++){
 		int from, to;
 		cin >> from >> to;
-		map[from] = to;
-		CNT = max(CNT, max(from, to));
+		v.push_back({from, to});
 	}
-}
-
-void print(){
-	for(int i=1; i<=12; i++){
-		cout << dp[i] << ' ';
-	}
-	cout << '\n';
+	sort(v.begin(), v.end());
 }
 
 void sol(){
-	int ans = 0;
-	for(int j=0; j<N; j++){
-		int idx = 1, del = 0;
-		for(int j=2; j<=CNT; j++){
-			if(map[j] == 0)	continue;
-			if(map[idx] < map[j]){
-				idx = j;
-			}else{
-				del = idx;
-				dp[j] = del;
+	int dp[101], ans = 0;
+	for(int i=0; i<N; i++){
+		dp[i] = 1;
+		for(int j = 0; j<i; j++){
+			if(v[i].second > v[j].second){
+				dp[i] = max(dp[i], dp[j] + 1);
 			}
 		}
-		print();
-		cout << del << '\n';
-		if(del > 0){
-			map[del] = 0;
-			ans++;
-		}else	break;
+		ans = max(ans, dp[i]);
 	}
-	cout << ans << '\n';
+	cout << N-ans << '\n';
 }
 
 int main(){
